@@ -1,0 +1,16 @@
+<!-- public/post-request.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit User</title>
+</head>
+<body>
+  <h1>Submit User Info</h1>
+  <form action="http://localhost:5000/api/users" method="POST">
+    <label>Name: <input type="text" name="name" required></label><br><br>
+    <label>Role: <input type="text" name="role" required></label><br><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

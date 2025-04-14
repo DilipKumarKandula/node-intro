@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit User Data</title>
+</head>
+<body>
+    <h1>Create a New User</h1>
+
+    <!-- User Form -->
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" name="role" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Handle form submission
+        document.getElementById('userForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default reload
+
+            const name = document.getElementById('name').value;
+            const role = document.getElementById('role').value;
+
+            const userData = { name, role };
+
+            fetch('http://localhost:5000/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert('✅ User Created: ' + JSON.stringify(data));
+            })
+            .catch(err => {
+                alert('❌ Error: ' + err.message);
+            });
+        });
+    </script>
+</body>
+</html>

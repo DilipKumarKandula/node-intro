@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete User</title>
+</head>
+<body>
+  <h2>Delete User by ID</h2>
+  <input type="number" id="userId" placeholder="Enter User ID" />
+  <button onclick="deleteUser()">Delete</button>
+
+  <script>
+    function deleteUser() {
+      const id = document.getElementById('userId').value;
+
+      fetch(`http://localhost:5000/api/users/${id}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        console.log(data);
+      })
+      .catch(err => {
+        alert('Something went wrong');
+        console.error(err);
+      });
+    }
+  </script>
+</body>
+</html>

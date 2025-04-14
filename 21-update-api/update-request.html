@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User</title>
+</head>
+<body>
+    <h1>Update User</h1>
+
+    <!-- Form to update user details -->
+    <form id="updateForm">
+        <label for="id">User ID:</label>
+        <input type="number" id="id" name="id" required><br><br>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" name="role"><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <script>
+        // Event listener for form submission
+        document.getElementById('updateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form default submission
+
+            // Get the input values
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const role = document.getElementById('role').value;
+
+            // Prepare data to be sent in the PUT request
+            const updatedUserData = {};
+            if (name) updatedUserData.name = name;
+            if (role) updatedUserData.role = role;
+
+            // Send PUT request using fetch
+            fetch(`http://localhost:5000/api/users/${id}`, {
+                method: 'PUT', // HTTP method
+                headers: {
+                    'Content-Type': 'application/json' // Sending data as JSON
+                },
+                body: JSON.stringify(updatedUserData) // Convert user data to JSON
+            })
+            .then(response => response.json()) // Parse the response JSON
+            .then(data => {
+                console.log('Success:', data); // Log success data
+                alert(data.message); // Display success message
+            })
+            .catch(error => {
+                console.error('Error:', error); // Handle error
+                alert('There was an error updating the user.');
+            });
+        });
+    </script>
+</body>
+</html>

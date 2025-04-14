@@ -1,0 +1,46 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>POST JSON to Node</title>
+</head>
+<body>
+  <h2>Send JSON to Node.js API</h2>
+  <input type="text" id="name" placeholder="Enter name" />
+  <input type="text" id="role" placeholder="Enter role" />
+  <button onclick="sendData()">Send</button>
+
+  <script>
+    function sendData() {
+      const name = document.getElementById('name').value;
+      const role = document.getElementById('role').value;
+
+      fetch('http://localhost:5000/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, role })
+      })
+      .then(res => res.json())
+      .then(data => alert(JSON.stringify(data)))
+      .catch(err => alert('Error: ' + err));
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POST Request Form</title>
+</head>
+<body>
+  <h1>Submit User Data</h1>
+  <form action="/api/users" method="POST">
+    <label>Name: <input type="text" name="name" required /></label><br><br>
+    <label>Email: <input type="email" name="email" required /></label><br><br>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
+
